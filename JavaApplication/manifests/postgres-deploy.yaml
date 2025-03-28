@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deploy
+  labels:
+    app: java-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-app
+  template:
+    metadata:
+      name: db
+      labels:
+        app: java-app
+    spec:
+      containers:
+        - name: java-db
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: java
+            - name: POSTGRES_PASSWORD
+              value: java
+            - name: POSTGRES_DB
+              value: java

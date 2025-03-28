@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-app-deploy
+  labels:
+    app: java-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: java-app-pod
+      app: java-app
+  template:
+    metadata:
+      name: java-app-pod
+      labels:
+        name: java-app-pod
+        app: java-app
+    spec:
+      containers:
+        - name: java-app
+          image: yanik2/java-app:3.1
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
