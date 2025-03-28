@@ -11,7 +11,6 @@ spec:
       app: java-app
   template:
     metadata:
-      name: db
       labels:
         app: java-app
     spec:
